@@ -7,9 +7,8 @@ The Detection Lab project provides a controlled environment for simulating and d
 ### Skills Learned
 
 - Build a sandbox enviornment
-- Advanced understanding of SIEM concepts and practical application.
+- Understanding of SIEM concepts and practical application.
 - Proficiency in analyzing and interpreting network logs.
-- Ability to generate and recognize attack signatures and patterns.
 - Enhanced knowledge of network protocols and security vulnerabilities.
 - Development of critical thinking and problem-solving skills in cybersecurity.
 
@@ -17,7 +16,6 @@ The Detection Lab project provides a controlled environment for simulating and d
 
 - Vitural machine (VirtualBox) for sandbox evironment. 
 - Splunk a Security Information and Event Management (SIEM) system for log ingestion and analysis.
-- Network analysis tools (such as Wireshark) for capturing and examining network traffic.
 - Telemetry generation tools to create realistic network traffic and attack scenarios.
 
 ## Steps
@@ -108,7 +106,7 @@ For example, here are some commands that we can use:
 
 ![20](https://github.com/GitSavior/Detection-Lab/assets/162067776/9d5dbe74-3a73-43ac-9ab4-a50990b43f5d)
 
-##### Step 13: Configure sysmon in our splunk input.conf file <>FIX!<>
+##### Step 13: Configure sysmon in our splunk input.conf file 
 
 ![21](https://github.com/GitSavior/Detection-Lab/assets/162067776/ca0599f2-ec09-41aa-85af-caaf00117603)
 
@@ -132,10 +130,34 @@ Can see the destination port from our listener. Consider the following question:
 
 ![26](https://github.com/GitSavior/Detection-Lab/assets/162067776/767485b7-005c-45bb-89f1-b04add1359f0)
 
+##### Step 17: Creating a new query to point to the malware program itself to investigate it  thoroughly.
 
+![34](https://github.com/GitSavior/Detection-Lab/assets/162067776/0ea89055-73b5-41f3-9030-3434718581bc)
 
+Here we are give six event code and will be analyzing event code number “1”
 
+![27](https://github.com/GitSavior/Detection-Lab/assets/162067776/41441760-d523-4b26-bfc6-9ad6e764c057)
 
+We need to expand this event to see the even actions
 
+![28](https://github.com/GitSavior/Detection-Lab/assets/162067776/7bafbd7c-0fbd-4156-a794-5e81863cec02)
 
+Here is the parent process project1.pdf.exe
 
+![29](https://github.com/GitSavior/Detection-Lab/assets/162067776/2312283d-7367-4646-a466-05e559a40956)
+
+The parent process spawned cmd.exe
+
+![30](https://github.com/GitSavior/Detection-Lab/assets/162067776/f50de9eb-740e-4de2-bf6b-7e6465f88b78)
+
+With the process_id 1800, one could utilize this id to query our data and check what this command prompt had done by searching this id using parent process
+
+![31](https://github.com/GitSavior/Detection-Lab/assets/162067776/22b29e58-4e14-4d0a-9128-1ec6f7708ad3)
+
+You can use the process_guid to create Create a query to gain a better understanding of the process structure.
+
+![32](https://github.com/GitSavior/Detection-Lab/assets/162067776/e0504864-397d-4a34-ade0-32e87de8a67f)
+
+See can see the event that project1.pfd.exe spawned cmd.exe below
+
+![33](https://github.com/GitSavior/Detection-Lab/assets/162067776/83e429d7-3705-43cb-a020-543cda6ab001)
